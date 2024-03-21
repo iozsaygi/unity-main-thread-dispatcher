@@ -7,6 +7,7 @@ public class ThreadedSpriteGenerator
 {
     // Execution interval of the thread.
     private readonly byte interval;
+    private readonly MainThreadDispatcher mainThreadDispatcher;
 
     // Actual reference to a thread that will be querying tasks on main thread.
     private Thread thread;
@@ -14,9 +15,10 @@ public class ThreadedSpriteGenerator
     // Flag to see if our thread is still active.
     private bool isThreadRunning;
 
-    public ThreadedSpriteGenerator(byte interval)
+    public ThreadedSpriteGenerator(byte interval, MainThreadDispatcher mainThreadDispatcher)
     {
         this.interval = interval;
+        this.mainThreadDispatcher = mainThreadDispatcher;
         isThreadRunning = false;
     }
 
