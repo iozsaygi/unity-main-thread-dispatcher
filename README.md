@@ -1,4 +1,4 @@
-# Unity-Main-Thread-Dispatcher
+# Unity Main Thread Dispatcher
 
 Implementation of a very simple main thread dispatcher in the Unity engine for a blog post.
 
