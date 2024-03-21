@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainThreadDispatcher: {fileID: 1733773210}
+  sprite: {fileID: 21300000, guid: f03c990584cb76e4fa8443fb267413a2, type: 3}
 --- !u!4 &1084950850
 Transform:
   m_ObjectHideFlags: 0
