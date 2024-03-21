@@ -1,6 +1,7 @@
 using System.Threading;
 using UnityEngine;
 
+// ReSharper disable IdentifierTypo
 // ReSharper disable InconsistentNaming
 
 public class ThreadedSpriteGenerator
@@ -42,10 +43,25 @@ public class ThreadedSpriteGenerator
             // Sleep the thread by an 'interval' amount.
             Thread.Sleep(interval * 1000);
 
-            // TODO: Access to 'MonoBehaviour' dispatcher and queue task on main thread.
+            // Create the actual task bundle that will be queued.
+            var dispatchableTaskBundle = new DispatchableTaskBundle(() =>
+            {
+                // Create the game object.
+                var gameObject = new GameObject(nameof(ThreadedSpriteGenerator))
+                {
+                    transform =
+                    {
+                        // Randomize the position of game object.
+                        position = new Vector2(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f))
+                    }
+                };
 
-            // This will result with an exception since we are calling Unity API from another thread.
-            var gameObject = new GameObject(nameof(GenerateSpriteOnMainThread));
+                // Add sprite renderer component.
+                var spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+            });
+
+            // Queue the created task in main thread.
+            mainThreadDispatcher.RegisterTaskBundleForDispatching(dispatchableTaskBundle);
         }
     }
 }
