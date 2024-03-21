@@ -9,8 +9,14 @@ public class SceneProxy : MonoBehaviour
 
     private ThreadedSpriteGenerator threadedSpriteGenerator;
 
-    private void Start()
+    private void OnEnable()
     {
         threadedSpriteGenerator = new ThreadedSpriteGenerator(3, mainThreadDispatcher);
+        threadedSpriteGenerator.Begin();
+    }
+
+    private void OnDisable()
+    {
+        threadedSpriteGenerator.Abort();
     }
 }
