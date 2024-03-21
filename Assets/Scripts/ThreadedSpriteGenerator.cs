@@ -61,6 +61,10 @@ public class ThreadedSpriteGenerator
                 // Add sprite renderer component and update the texture.
                 var spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
                 spriteRenderer.sprite = sprite;
+
+                // Randomize color for fun.
+                spriteRenderer.color =
+                    new Color(Random.value, Random.value, Random.value, 1.0f);
             });
 
             // Queue the created task in main thread.
